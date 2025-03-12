@@ -1,0 +1,30 @@
+[project]
+name = "ffi-pipeline"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Gideon Grinberg",email = "grinberg1165@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "astropy (>=7.0.1,<8.0.0)",
+    "astrocut (>=0.12.0,<0.13.0)",
+    "astroquery (>=0.4.9.post1,<0.5.0)",
+    "lightkurve (>=2.5.0,<3.0.0)",
+    "matplotlib (>=3.10.1,<4.0.0)",
+    "numpy (>=2.2.3,<3.0.0)",
+    "scipy (>=1.15.2,<2.0.0)",
+    "polars (>=1.24.0,<2.0.0)",
+    "tqdm (>=4.67.1,<5.0.0)",
+    "coiled (>=1.82.0,<2.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+jupyter = "^1.1.1"
+
