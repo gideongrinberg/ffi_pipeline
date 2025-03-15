@@ -1,0 +1,34 @@
+Notes/observations
+
+Processed 100,000 targets on Coiled in 19 minutes (30 minutes of total uptime) 
+Cluster ID: 796827
+
+Profile indicates that ~98% of time is taken up by make_lightcurve. Within that, it's about 55% cube_cut and 45% detrending. Mostly coming from _get_cutout, but some of it from opening the fits file. Mostly I/O bound rather than CPU bound. 
+
+m8g.xlarge (72), m7g.xlarge (1)
+March 14, 2025
+
+Number of results:
+shape: (3, 2)
+┌────────┬───────┐
+│ result ┆ count │
+│ ---    ┆ ---   │
+│ bool   ┆ u32   │
+╞════════╪═══════╡
+│ false  ┆ 92478 │
+│ true   ┆ 116   │
+│ null   ┆ 7406  │
+└────────┴───────┘
+
+Pricing:
+
+AWS will not let me check cost yet, but in theory:
+
+72 m8g.xl instances * $0.17952/hr on demand price * 0.5 hours = $6.46 (assuming all on demand)
+$4.7 assuming all spot instances with 73% discount
+
+Plus ~16¢ for the scheduler
+
+So, 6.46/100,000 * 2808020 is the total cost, roughly $190. 
+
+One thing I didn't realize is that the ARM-based graviton actually only has 1 thread/core, not 2 like the intel cpus. So maybe trying again w/o ARM or w/ more cores could improve cube_cut performance.
