@@ -25,10 +25,17 @@ Pricing:
 AWS will not let me check cost yet, but in theory:
 
 72 m8g.xl instances * $0.17952/hr on demand price * 0.5 hours = $6.46 (assuming all on demand)
-$4.7 assuming all spot instances with 73% discount
 
 Plus ~16¢ for the scheduler
 
 So, 6.46/100,000 * 2808020 is the total cost, roughly $190. 
 
 One thing I didn't realize is that the ARM-based graviton actually only has 1 thread/core, not 2 like the intel cpus. So maybe trying again w/o ARM or w/ more cores could improve cube_cut performance.
+
+Subsequent run:
+
+149 workers on c8g.large. Processed 10,000 targets in 2m 43s. The full run would be ~13 hours, so $268.
+
+Run with c8g.4xlarge (18) on 1 thread/worker processed 10,000 targets in 11m 11s.
+
+Run with c8g.8xlarge (9) on 1 thread/worker processed 1000 targets in 2m 28s.
